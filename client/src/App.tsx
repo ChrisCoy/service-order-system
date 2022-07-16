@@ -3,8 +3,12 @@ import Navbar from "./components/Navbar";
 import OrderItem from "./components/OrderItem";
 import "./styles/global.scss";
 import "./styles/app.scss";
+import Login from "./components/Login";
+import NewOrder from "./components/NewOrder";
+import { useState } from "react";
 
 function App() {
+  const [newOrderOpen, setNewOrderOpen] = useState(false);
   const order = {
     sector: "ALMOXARIFADO",
     author: "Christopher Lee",
@@ -16,9 +20,11 @@ function App() {
   };
   return (
     <>
+      {/* <Login /> */}
+      {newOrderOpen && <NewOrder setNewOrderOpen={setNewOrderOpen} />}
       <Navbar />
       <main className="main-content">
-        <AsideMenu />
+        <AsideMenu setNewOrderOpen={setNewOrderOpen} />
         <section className="order" id="orders">
           <OrderItem order={order} />
           <OrderItem order={order} />

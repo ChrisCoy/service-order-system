@@ -1,0 +1,128 @@
+.modal {
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(13, 13, 17, 0.8);
+  overflow: hidden;
+}
+
+#exit-modal {
+  z-index: -1;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+}
+
+.modal-content {
+  margin: 1rem;
+  z-index: 3;
+  width: 650px;
+  height: 370px;
+}
+
+.sectors-combobox {
+  position: relative;
+  width: 100%;
+}
+
+.sectors-combobox span {
+  display: flex;
+  align-items: center;
+  padding-left: 1.5rem;
+  font-weight: 600;
+  width: 100%;
+  height: 50px;
+  background-color: #f6f6f6;
+  cursor: pointer;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  color: var(--text-black);
+}
+
+.sectors-combobox::after {
+  cursor: pointer;
+  position: absolute;
+  content: "";
+  width: 15px;
+  height: 15px;
+  top: 0.9rem;
+  left: 94%;
+  margin-bottom: 0.3rem;
+  border-left: 2px solid #b1b1b1;
+  border-bottom: 2px solid #b1b1b1;
+  transform: rotate(-45deg);
+}
+
+.sectors-combobox:hover > span {
+  filter: brightness(0.9);
+}
+
+.combobox-options {
+  display: none;
+  position: absolute;
+  margin: 0 auto;
+  width: 100%;
+  top: 50px;
+  left: 0;
+}
+
+.sectors-combobox .combobox-options > div {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  padding-left: 1.5rem;
+  height: 50px;
+  background-color: #e2e2e2;
+  cursor: pointer;
+  color: #7a7a7a;
+  border-bottom: 1px solid #dadada;
+}
+
+.sectors-combobox .combobox-options > div:hover {
+  filter: brightness(0.9);
+  color: #000;
+}
+
+#os-resume {
+  width: 100%;
+  height: 66%;
+  margin-top: 1.2rem;
+  font-size: 1rem;
+  padding: 0.8rem;
+  background-color: #f6f6f6;
+  border: 1px solid #f6f6f6;
+  resize: none;
+}
+
+#os-resume:focus {
+  outline: var(--purple-effect) 1px solid;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin-top: 0.3rem;
+}
+
+.modal-buttons button {
+  width: 100%;
+  height: 45px;
+  color: #f6f6f6;
+  font-weight: 600;
+  border: none;
+}
+
+#cancel-button {
+  background-color: #f85656;
+  border-bottom-left-radius: 3px;
+}
+
+#send-button {
+  background-color: #2ae769;
+  border-bottom-right-radius: 3px;
+}

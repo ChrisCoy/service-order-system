@@ -7,16 +7,14 @@ const mongoose = require("mongoose");
 
 app.use(express.json());
 
-app.use((req: RequestUsr, res: Response, next: NextFunction) => {
-  res.locals.user = req.user || null;
-  next();
+
+
+app.post("/register", (req: Request, res: Response) => {
+  console.log(req.body);
+  res.json({ campo1: "Valor1" });
 });
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("Testee");
-});
-
-app.post("/teste", (req: Request, res: Response) => {
+app.post("/login", (req: Request, res: Response) => {
   console.log(req.body);
   res.json({ campo1: "Valor1" });
 });

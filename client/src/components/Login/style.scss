@@ -1,0 +1,66 @@
+.username-container {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(13, 13, 17, 0.932);
+  overflow: hidden;
+}
+
+.username-content {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 300px;
+  height: 400px;
+  padding: 1rem;
+  margin: 0 1rem;
+  background-color: #f6f6f6;
+  border-radius: 20px;
+}
+
+.username-content label {
+  width: 100%;
+  font-size: 1.1rem;
+  margin-bottom: 0.2rem;
+  margin-top: 1rem;
+}
+
+.username-content > svg {
+  width: 150px;
+  color: var(--purple-effect);
+  align-self: center;
+}
+
+.username-content input {
+  width: 100%;
+  height: 2.6rem;
+  font-size: 1rem;
+  background: none;
+  border-radius: 3px;
+  color: #000000;
+  border: 1px solid #a1a1a1;
+  margin-bottom: 0.2rem;
+  padding: 0 0.6rem;
+}
+
+.username-content input:focus {
+  outline-color: var(--purple-effect);
+}
+
+.username-content label:focus-within {
+  color: var(--purple-effect);
+}
+
+.username-content button {
+  width: 100%;
+  height: 45px;
+  color: var(--purple-effect);
+  border: 1px solid var(--purple-effect);
+  font-weight: 600;
+  background-color: #f6f6f6;
+  margin-top: 1.6rem;
+}
