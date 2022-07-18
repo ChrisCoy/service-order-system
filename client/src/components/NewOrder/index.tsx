@@ -1,28 +1,19 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import Modal from "../Modal";
+import useModal from "../../hooks/useModal";
 import "./style.scss";
 
-interface NewOrderProps {
-  setNewOrderOpen: (option: boolean) => void;
-}
-
-export default function NewOrder({ setNewOrderOpen }: NewOrderProps) {
+export default function NewOrder() {
+  const { newOrderModal, closeAll } = useModal();
   const [open, setOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("Selecione o setor");
 
-  useEffect(() => {
-    document.addEventListener(
-      "keydown",
-      (evt) => {
-        if (evt.key === "Escape") {
-          setNewOrderOpen(false);
-        }
-      },
-      true
-    );
-  }, []);
+  if (!newOrderModal) {
+    return null;
+  }
 
   return (
-    <div className="modal">
+    <Modal>
       <div className="modal-content">
         <div
           className="sectors-combobox"
@@ -73,12 +64,7 @@ export default function NewOrder({ setNewOrderOpen }: NewOrderProps) {
           placeholder="Relate em poucas palavras seu problema."
         ></textarea>
         <div className="modal-buttons">
-          <button
-            id="cancel-button"
-            onClick={() => {
-              setNewOrderOpen(false);
-            }}
-          >
+          <button id="cancel-button" onClick={closeAll}>
             CANCELAR
           </button>
           <button id="send-button" onClick={() => {}}>
@@ -86,7 +72,6 @@ export default function NewOrder({ setNewOrderOpen }: NewOrderProps) {
           </button>
         </div>
       </div>
-      <div id="exit-modal" onClick={() => {}}></div>
-    </div>
+    </Modal>
   );
 }

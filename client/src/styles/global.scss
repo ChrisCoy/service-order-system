@@ -17,7 +17,6 @@ body {
   font-weight: normal;
   font-size: 1rem;
   background-color: rgb(38, 38, 41);
-  overflow-x: hidden;
 }
 
 button {
@@ -46,7 +45,7 @@ a {
 }
 
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {

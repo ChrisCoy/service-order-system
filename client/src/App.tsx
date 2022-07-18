@@ -5,10 +5,11 @@ import "./styles/global.scss";
 import "./styles/app.scss";
 import Login from "./components/Login";
 import NewOrder from "./components/NewOrder";
-import { useState } from "react";
+import UserManager from "./components/UserManager";
+import { ModalProvider } from "./providers/ModalProvider";
+import Footer from "./components/Footer";
 
 function App() {
-  const [newOrderOpen, setNewOrderOpen] = useState(false);
   const order = {
     sector: "ALMOXARIFADO",
     author: "Christopher Lee",
@@ -19,20 +20,23 @@ function App() {
       "hic ea expedita itaque exercitationem. Aliquam perferendis architecto voluptate eius.",
   };
   return (
-    <>
+    <ModalProvider>
       {/* <Login /> */}
-      {newOrderOpen && <NewOrder setNewOrderOpen={setNewOrderOpen} />}
+      <UserManager />
+      <NewOrder />
       <Navbar />
       <main className="main-content">
-        <AsideMenu setNewOrderOpen={setNewOrderOpen} />
+        <AsideMenu />
         <section className="order" id="orders">
+          <OrderItem order={order} />
           <OrderItem order={order} />
           <OrderItem order={order} />
           <OrderItem order={order} />
           <OrderItem order={order} />
         </section>
       </main>
-    </>
+      <Footer />
+    </ModalProvider>
   );
 }
 

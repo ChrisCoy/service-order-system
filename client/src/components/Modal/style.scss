@@ -1,0 +1,11 @@
+.close-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  background: #101114d3;
+  z-index: 1;
+  padding: 2rem 0;
+}

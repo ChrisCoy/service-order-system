@@ -1,0 +1,198 @@
+.usermanager-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 800px;
+  max-height: 80vh;
+  min-height: 80vh;
+  margin: 1rem;
+  padding: 1rem 2vw;
+  background-color: #fff;
+  color: #252525;
+  overflow: auto;
+  border-radius: 3px;
+
+  p,
+  strong {
+    display: inline-block;
+  }
+
+  .close-usermanager {
+    position: absolute;
+    cursor: pointer;
+    background: none;
+    right: 0;
+    height: 25px;
+    margin-right: 1rem;
+    width: 25px;
+    border: none;
+    outline: none;
+    transition: all 0.3s;
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 10px;
+      width: 3px;
+      height: 100%;
+      background: rgb(255, 55, 55);
+      transform: rotate(45deg);
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 10px;
+      width: 3px;
+      height: 100%;
+      background: rgb(255, 55, 55);
+      transform: rotate(-45deg);
+    }
+
+    &:hover {
+      border: 1px solid rgb(255, 55, 55);
+      border-radius: 5px;
+      transform: rotate(180deg) scale(1.2);
+      filter: none;
+    }
+  }
+
+  .create-new-user {
+    position: absolute;
+    left: 1rem;
+    outline: none;
+    border: none;
+    background: #4bccff;
+    color: #fff;
+    font-weight: 700;
+    border-radius: 20px;
+    padding: 0.6rem 1rem;
+
+    span {
+      display: none;
+    }
+  }
+
+  .userslist-title {
+    display: flex;
+    justify-content: center;
+  }
+
+  .zebra-item {
+    background: #fafafa;
+  }
+}
+
+.userslist-title {
+  margin-top: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.user-item {
+  cursor: pointer;
+
+  &:hover {
+    background-color: #e9e9e9;
+    transform: scale(1.02);
+  }
+
+  svg {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: all 0.3s;
+    &:hover {
+      transform: scale(1.5);
+      color: #4bccff;
+    }
+    & + svg {
+      margin-left: 0.4rem;
+    }
+  }
+}
+
+.user-item,
+.user-item-title {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 1.2rem 0.4rem;
+
+  .item-buttons {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
+  strong {
+    margin-right: 0.4rem;
+  }
+
+  .user-name,
+  .user-email {
+    display: flex;
+    align-items: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .create-new-user {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    padding: 0 !important;
+    top: 1.6rem !important;
+    height: 40px;
+    width: 40px;
+    transition: transform 0.3s;
+
+    &:hover {
+      transform: scale(1.1);
+      filter: none;
+      svg {
+        animation: onHover 0.6s ease-in-out 1;
+      }
+    }
+
+    p {
+      display: none;
+    }
+
+    svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    span {
+      display: block !important;
+    }
+  }
+}
+
+@keyframes onHover {
+  0% {
+    transform: scale(1);
+  }
+
+  30% {
+    transform: scale(1.4);
+  }
+
+  60% {
+    transform: scale(1);
+  }
+
+  80% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+// .usermanager-content {
+//   width: 100%;
+//   display: flex;
+//   justify-content: space-around;
+// }

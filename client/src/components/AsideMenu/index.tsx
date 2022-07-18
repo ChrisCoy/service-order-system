@@ -1,10 +1,9 @@
+import useModal from "../../hooks/useModal";
 import "./style.scss";
 
-interface AsideMenuProps {
-  setNewOrderOpen: (option: boolean) => void;
-}
+export default function AsideMenu() {
+  const { setNewOrderModal, setUserManagerModal } = useModal();
 
-export default function AsideMenu({ setNewOrderOpen }: AsideMenuProps) {
   return (
     <div className="aside-menu">
       <aside className="menu">
@@ -16,15 +15,20 @@ export default function AsideMenu({ setNewOrderOpen }: AsideMenuProps) {
       <button
         id="new-order"
         onClick={() => {
-          setNewOrderOpen(true);
+          setNewOrderModal(true);
         }}
       >
         NOVO CHAMADO
       </button>
-      <button id="remove-order" onClick={() => {}}>
+      {/* <button id="remove-order" onClick={() => {}}>
         REMOVER TODAS OS
+      </button> */}
+      <button className="button" onClick={() => {}}>
+        GERENCIAR USUÁRIOS
       </button>
-      <button className="add-user-button" onClick={() => {}}>GERENCIAR USUÁRIOS</button>
+      <button className="button" onClick={() => setUserManagerModal(true)}>
+        GERENCIAR SETORES
+      </button>
     </div>
   );
 }
