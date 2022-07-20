@@ -1,5 +1,5 @@
 import "./style.scss";
-import Modal from "../Modal";
+import Modal from "../ModalContainer";
 import { useState } from "react";
 import ListUsers from "./ListUsers";
 import CreateUser from "./CreateUser";

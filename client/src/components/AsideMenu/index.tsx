@@ -1,8 +1,10 @@
+import useAuth from "../../hooks/useAuth";
 import useModal from "../../hooks/useModal";
-import useToast from "../../hooks/useToast/useToast";
+import useToast from "../../hooks/useToast";
 import "./style.scss";
 
 export default function AsideMenu() {
+  const { user } = useAuth();
   const { setNewOrderModal, setUserManagerModal } = useModal();
   const Toast = useToast();
 
@@ -25,17 +27,21 @@ export default function AsideMenu() {
       {/* <button id="remove-order" onClick={() => {}}>
         REMOVER TODAS OS
       </button> */}
-      <button
-        className="button"
-        onClick={() => {
-          Toast.info("Testando com mensagem");
-        }}
-      >
-        GERENCIAR USUÁRIOS
-      </button>
-      <button className="button" onClick={() => setUserManagerModal(true)}>
-        GERENCIAR SETORES
-      </button>
+      {user.isAdmin && (
+        <>
+          <button
+            className="button"
+            onClick={() => {
+              Toast.info("Testando com mensagem");
+            }}
+          >
+            GERENCIAR USUÁRIOS
+          </button>
+          <button className="button" onClick={() => setUserManagerModal(true)}>
+            GERENCIAR SETORES
+          </button>
+        </>
+      )}
     </div>
   );
 }

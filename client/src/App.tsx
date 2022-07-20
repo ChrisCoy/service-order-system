@@ -3,17 +3,25 @@ import Navbar from "./components/Navbar";
 import OrderItem from "./components/OrderItem";
 import "./styles/global.scss";
 import "./styles/app.scss";
-import Login from "./components/Login";
-import NewOrder from "./components/NewOrder";
-import UserManager from "./components/UserManager";
+import Login from "./components/LoginModal";
+import NewOrder from "./components/NewOrderModal";
+import UserManager from "./components/UserManagerModal";
 import Footer from "./components/Footer";
 
 import useModal from "./hooks/useModal";
 import useAuth from "./hooks/useAuth";
+import { useCallback, useEffect } from "react";
 
 function App() {
   const { newOrderModal, userManagerModal } = useModal();
-  const { isAuth } = useAuth();
+  const { isAuth, validateSession } = useAuth();
+  const vldSession = useCallback(() => {
+    validateSession();
+  }, [validateSession]);
+
+  useEffect(() => {
+    vldSession();
+  }, []);
 
   const order = {
     sector: "ALMOXARIFADO",

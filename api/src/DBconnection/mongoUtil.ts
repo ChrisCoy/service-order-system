@@ -16,20 +16,17 @@ export const connectDB = () => {
     .then((db) => {
       database = db.connection;
 
-      User.findOne({ isAdmin: true }).then((item) => {
-        if (!item) {
-          bcrypt.hash(process.env.ADMIN_PASSWORD as string, 10).then((hash) => {
-            new User({
-              name: "Admin",
-              email: process.env.ADMIN_EMAIL,
-              password: hash,
-              isAdmin: true,
-            })
-              .save()
-              .catch((err) => console.log(err));
-          });
-        }
+      bcrypt.hash(process.env.ADMIN_PASSWORD as string, 10).then((hash) => {
+        new User({
+          name: "Admin",
+          email: process.env.ADMIN_EMAIL,
+          password: hash,
+          isAdmin: true,
+        })
+          .save()
+          .catch((err) => err.code !== 11000 && console.log(err));
       });
+
       console.log("Connected on DB with success.");
     })
     .catch((err) => console.error("ERROR ON DB CONNECTION: " + err));

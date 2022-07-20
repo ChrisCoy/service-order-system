@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Modal from "../Modal";
+import Modal from "../ModalContainer";
 import useModal from "../../hooks/useModal";
 import "./style.scss";
 

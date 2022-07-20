@@ -33,13 +33,15 @@ svg {
   color: rgb(255, 255, 255);
 }
 
-.header-content nav p,
-.header-content nav a {
+.link {
+  cursor: pointer;
+}
+
+.header-content nav p {
   display: flex;
   align-items: center;
 }
 
-.header-content a svg,
 .header-content p svg {
   width: 1.5rem;
   height: 1.5rem;
@@ -47,7 +49,7 @@ svg {
   margin-right: 0.4rem;
 }
 
-.header-content nav a:hover {
+.link:hover {
   color: var(--icons-color);
 }
 
