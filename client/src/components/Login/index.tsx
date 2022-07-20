@@ -1,8 +1,12 @@
+import Modal from "../Modal";
 import "./style.scss";
+import useModal from "../../hooks/useModal";
+import useAuth from "../../hooks/useAuth";
 
-export default function () {
+export default function Login() {
+  const { authenticate } = useAuth();
   return (
-    <div id="username-screen" className="username-container">
+    <Modal>
       <div className="username-content">
         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
           <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
@@ -20,10 +24,15 @@ export default function () {
           <input id="password-input" type="text" name="password" maxLength={26} />
         </label>
 
-        <button type="button" onClick={() => {}}>
+        <button
+          type="button"
+          onClick={() => {
+            authenticate();
+          }}
+        >
           CONFIRMAR
         </button>
       </div>
-    </div>
+    </Modal>
   );
 }

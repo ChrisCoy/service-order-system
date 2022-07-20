@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import { User } from "../models/User";
+import bcrypt from "bcrypt";
 
 dotenv.config();
 
@@ -17,19 +18,21 @@ export const connectDB = () => {
 
       User.findOne({ isAdmin: true }).then((item) => {
         if (!item) {
-          new User({
-            name: "Admin",
-            email: process.env.DB_ADMIN_EMAIL,
-            password: process.env.DB_ADMIN_PASSWORD,
-            isAdmin: true,
-          })
-            .save()
-            .catch((err) => console.log(err));
+          bcrypt.hash(process.env.ADMIN_PASSWORD as string, 10).then((hash) => {
+            new User({
+              name: "Admin",
+              email: process.env.ADMIN_EMAIL,
+              password: hash,
+              isAdmin: true,
+            })
+              .save()
+              .catch((err) => console.log(err));
+          });
         }
       });
       console.log("Connected on DB with success.");
     })
-    .catch((err) => console.log("Erron on connection " + err));
+    .catch((err) => console.error("ERROR ON DB CONNECTION: " + err));
 };
 
 export const disconnect = () => {

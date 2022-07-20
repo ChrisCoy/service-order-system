@@ -1,8 +1,10 @@
 import useModal from "../../hooks/useModal";
+import useToast from "../../hooks/useToast/useToast";
 import "./style.scss";
 
 export default function AsideMenu() {
   const { setNewOrderModal, setUserManagerModal } = useModal();
+  const Toast = useToast();
 
   return (
     <div className="aside-menu">
@@ -23,7 +25,12 @@ export default function AsideMenu() {
       {/* <button id="remove-order" onClick={() => {}}>
         REMOVER TODAS OS
       </button> */}
-      <button className="button" onClick={() => {}}>
+      <button
+        className="button"
+        onClick={() => {
+          Toast.info("Testando com mensagem");
+        }}
+      >
         GERENCIAR USUÁRIOS
       </button>
       <button className="button" onClick={() => setUserManagerModal(true)}>

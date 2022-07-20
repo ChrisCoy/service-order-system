@@ -6,10 +6,15 @@ import "./styles/app.scss";
 import Login from "./components/Login";
 import NewOrder from "./components/NewOrder";
 import UserManager from "./components/UserManager";
-import { ModalProvider } from "./providers/ModalProvider";
 import Footer from "./components/Footer";
 
+import useModal from "./hooks/useModal";
+import useAuth from "./hooks/useAuth";
+
 function App() {
+  const { newOrderModal, userManagerModal } = useModal();
+  const { isAuth } = useAuth();
+
   const order = {
     sector: "ALMOXARIFADO",
     author: "Christopher Lee",
@@ -20,10 +25,10 @@ function App() {
       "hic ea expedita itaque exercitationem. Aliquam perferendis architecto voluptate eius.",
   };
   return (
-    <ModalProvider>
-      {/* <Login /> */}
-      <UserManager />
-      <NewOrder />
+    <>
+      {!isAuth && <Login />}
+      {userManagerModal && <UserManager />}
+      {newOrderModal && <NewOrder />}
       <Navbar />
       <main className="main-content">
         <AsideMenu />
@@ -36,7 +41,7 @@ function App() {
         </section>
       </main>
       <Footer />
-    </ModalProvider>
+    </>
   );
 }
 

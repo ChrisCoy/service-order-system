@@ -4,13 +4,9 @@ import useModal from "../../hooks/useModal";
 import "./style.scss";
 
 export default function NewOrder() {
-  const { newOrderModal, closeAll } = useModal();
+  const { closeAll } = useModal();
   const [open, setOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("Selecione o setor");
-
-  if (!newOrderModal) {
-    return null;
-  }
 
   return (
     <Modal>

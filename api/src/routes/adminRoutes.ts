@@ -1,5 +1,5 @@
+import bcrypt from "bcrypt";
 import express from "express";
-import { appendFile } from "fs";
 import { User } from "../models/User";
 import { Role } from "../models/Role";
 
@@ -12,10 +12,12 @@ adminRouter.post("/register", async (req, res) => {
     res.status(500).json({ err: "Invalid Data!" });
   }
 
+  const hash = await bcrypt.hash(process.env.ADMIN_EMAIL as string, 10);
+
   const newUser = new User({
     name,
     email,
-    password,
+    password: hash,
     role,
   });
 
@@ -42,6 +44,6 @@ adminRouter.post("/role/add", async (req, res) => {
   res.status(200).send();
 });
 
-// adminRouter.post("/teste", (req, res) => {
-//   res.send("rota de teste");
-// });
+adminRouter.post("/teste", (req, res) => {
+  res.send("rota de teste");
+});

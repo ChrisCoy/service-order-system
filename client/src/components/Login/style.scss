@@ -19,25 +19,25 @@
   padding: 1rem;
   margin: 0 1rem;
   background-color: #f6f6f6;
-  border-radius: 20px;
+  border-radius: 3px;
 }
 
 .username-content label {
   width: 100%;
-  font-size: 1.1rem;
+  font-size: 1rem;
   margin-bottom: 0.2rem;
   margin-top: 1rem;
 }
 
 .username-content > svg {
-  width: 150px;
+  width: 110px;
   color: var(--purple-effect);
   align-self: center;
 }
 
 .username-content input {
   width: 100%;
-  height: 2.6rem;
+  height: 42px;
   font-size: 1rem;
   background: none;
   border-radius: 3px;
@@ -62,5 +62,5 @@
   border: 1px solid var(--purple-effect);
   font-weight: 600;
   background-color: #f6f6f6;
-  margin-top: 1.6rem;
+  margin-top: 2.6rem;
 }

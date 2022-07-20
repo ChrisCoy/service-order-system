@@ -6,12 +6,18 @@
   width: 800px;
   max-height: 80vh;
   min-height: 80vh;
+  height: 100%;
   margin: 1rem;
   padding: 1rem 2vw;
   background-color: #fff;
   color: #252525;
   overflow: auto;
   border-radius: 3px;
+
+  h2 {
+    margin-top: 0.8rem;
+    margin-bottom: 1rem;
+  }
 
   p,
   strong {
@@ -51,9 +57,7 @@
     }
 
     &:hover {
-      border: 1px solid rgb(255, 55, 55);
-      border-radius: 5px;
-      transform: rotate(180deg) scale(1.2);
+      transform: rotate(180deg) scale(1.2) translateX(-2px);
       filter: none;
     }
   }
@@ -82,11 +86,6 @@
   .zebra-item {
     background: #fafafa;
   }
-}
-
-.userslist-title {
-  margin-top: 0.8rem;
-  margin-bottom: 1rem;
 }
 
 .user-item {
@@ -133,6 +132,86 @@
     display: flex;
     align-items: center;
   }
+}
+
+.back-button {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  border: none;
+  padding: 0 0.4rem;
+  background: none;
+  transition: left 0.3s ease-in-out;
+
+  &:hover {
+    left: 0.4rem;
+  }
+}
+
+.title-create {
+  width: 100%;
+  text-align: center;
+}
+
+.create-user-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.inputs-container-user {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  width: 100%;
+
+  label {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9rem;
+
+    input,
+    select {
+      background-color: #f8f8f8;
+      height: 2.4rem;
+      padding: 0 0.6rem;
+      border: none;
+      border-bottom: 1px solid #a1a1a1;
+      border-radius: 3px;
+      margin-top: 0.2rem;
+      font-size: 1rem;
+    }
+
+    select:focus {
+      outline-color: var(--purple-effect);
+    }
+
+    option {
+      background: white !important;
+      font-size: 1.2rem;
+      padding: 1rem;
+      line-height: 2rem;
+    }
+
+    input:focus {
+      outline-color: var(--purple-effect);
+    }
+
+    &:focus-within {
+      color: var(--purple-effect);
+    }
+  }
+}
+
+.save-user-button {
+  margin-top: 2rem;
+  width: 100%;
+  height: 2.4rem;
+  border: 1px solid var(--purple-effect);
+  background: white;
+  margin-bottom: 0.6rem;
 }
 
 @media (max-width: 600px) {

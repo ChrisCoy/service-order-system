@@ -5,7 +5,7 @@ import { IoPersonAddOutline as AddUserIcon } from "react-icons/io5";
 import useModal from "../../hooks/useModal";
 
 export default function ListUsers({ setState }: any) {
-  const { userManagerModal, closeAll } = useModal();
+  const { closeAll } = useModal();
   let contZebra = 0;
 
   return (
@@ -18,7 +18,6 @@ export default function ListUsers({ setState }: any) {
           </span>
         </button>
         <h2>Usuários Registrados</h2>
-        <button className="close-usermanager" onClick={closeAll}></button>
       </div>
       <div className="user-item-title">
         <div className="user-name">
@@ -35,12 +34,18 @@ export default function ListUsers({ setState }: any) {
         </span>
       </div>
 
-      {Array(20)
+      {Array(1)
         .fill({})
         .map((item) => {
           contZebra++;
           return (
-            <div className={`user-item ${contZebra % 2 && "zebra-item"}`}>
+            <div
+              className={`user-item ${contZebra % 2 && "zebra-item"}`}
+              key={contZebra}
+              onClick={() => {
+                setState("VIEW");
+              }}
+            >
               <div className="user-name">
                 <p>Christopher Lee</p>
               </div>
