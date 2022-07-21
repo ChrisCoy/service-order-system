@@ -23,10 +23,6 @@ export default function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState({} as IUser);
   const Toast = useToast();
 
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
-
   function login(email: string, password: string) {
     Api.post("login", { email, password })
       .then(() => {
@@ -42,7 +38,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
       .catch((err) => {
         setIsAuth(false);
         setUser({} as IUser);
-        Toast.error(JSON.stringify(err.response.data.err));
+        Toast.error(JSON.stringify(err.response.data?.err) || "Connection error.");
       });
   }
 
@@ -64,7 +60,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
       .catch((err) => {
         setIsAuth(false);
         setUser({} as IUser);
-        Toast.error(JSON.stringify(err.response.data.err));
+        Toast.error(JSON.stringify(err.response.data?.err) || "Connection error.");
       });
   }
 

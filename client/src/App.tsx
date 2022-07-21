@@ -21,7 +21,7 @@ function App() {
 
   useEffect(() => {
     vldSession();
-  }, []);
+  }, [vldSession]);
 
   const order = {
     sector: "ALMOXARIFADO",

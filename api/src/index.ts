@@ -22,4 +22,4 @@ app.use("/", publicRouter);
 connectDB();
 
 const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => console.log("IS ALIVE!!!!"));
+app.listen(PORT, () => console.log("IS ALIVE!!!! on PORT " + PORT));

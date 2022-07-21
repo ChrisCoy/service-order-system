@@ -34,7 +34,7 @@ export default function ListUsers({ setState }: any) {
         </span>
       </div>
 
-      {Array(1)
+      {Array(20)
         .fill({})
         .map((item) => {
           contZebra++;
