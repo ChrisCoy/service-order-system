@@ -36,9 +36,14 @@ export default function AuthProvider({ children }: AuthProviderProps) {
         setIsAuth(true);
       })
       .catch((err) => {
+        console.log(err);
         setIsAuth(false);
         setUser({} as IUser);
-        Toast.error(JSON.stringify(err.response.data?.err) || "Connection error.");
+        if (err.response?.data) {
+          Toast.error(JSON.stringify(err.response.data?.err));
+        } else {
+          Toast.error("Connection error.");
+        }
       });
   }
 
@@ -58,9 +63,14 @@ export default function AuthProvider({ children }: AuthProviderProps) {
         }
       })
       .catch((err) => {
+        console.log(err);
         setIsAuth(false);
         setUser({} as IUser);
-        Toast.error(JSON.stringify(err.response.data?.err) || "Connection error.");
+        if (err.response?.data) {
+          Toast.error(JSON.stringify(err.response.data?.err));
+        } else {
+          Toast.error("Connection error.");
+        }
       });
   }
 
