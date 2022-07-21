@@ -1,6 +1,6 @@
 import Modal from "../ModalContainer";
 import "./style.scss";
-import useModal from "../../hooks/useModal";
+// import useModal from "../../hooks/useModal";
 import useAuth from "../../hooks/useAuth";
 import { SyntheticEvent, useState } from "react";
 import useToast from "../../hooks/useToast";

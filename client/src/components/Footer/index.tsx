@@ -18,6 +18,7 @@ export default function Footer() {
         <a
           href="https://github.com/ChrisCoy"
           target="_blank"
+          rel="noreferrer"
           style={{ textDecoration: "none", color: "var(--purple-effect)" }}
         >
           Christopher Lee

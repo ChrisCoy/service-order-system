@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useState } from "react";
 import useToast from "../hooks/useToast";
 import Api from "../services/api";
 import { IUser } from "../types/UserTypes";
@@ -65,7 +65,6 @@ export default function AuthProvider({ children }: AuthProviderProps) {
   }
 
   function logOut() {
-    const date = Date.now().valueOf();
     document.cookie = "access-token=";
     setIsAuth(false);
     setUser({} as IUser);

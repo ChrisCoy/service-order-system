@@ -2,10 +2,10 @@ import { BsFileEarmarkPerson as PersonIcon } from "react-icons/bs";
 import { FiEdit as EditIcon } from "react-icons/fi";
 import { AiOutlineDelete as DeleteIcon, AiOutlineMail as EmailIcon } from "react-icons/ai";
 import { IoPersonAddOutline as AddUserIcon } from "react-icons/io5";
-import useModal from "../../hooks/useModal";
+// import useModal from "../../hooks/useModal";
 
 export default function ListUsers({ setState }: any) {
-  const { closeAll } = useModal();
+  // const { closeAll } = useModal();
   let contZebra = 0;
 
   return (
