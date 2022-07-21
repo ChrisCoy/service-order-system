@@ -1,1 +1,1 @@
-web: pm --prefix ./api/ run start
+web: npm --prefix ./api/ run start
