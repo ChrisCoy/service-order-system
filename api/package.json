@@ -6,7 +6,10 @@
   "type": "commonjs",
   "scripts": {
     "dev": "nodemon src/index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node build/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "postinstall": "npm run build"
   },
   "author": "ChrisCoy",
   "license": "ISC",
@@ -31,6 +34,7 @@
     "express-session": "^1.17.3",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^4.7.0",
-    "mongoose": "^6.4.4"
+    "mongoose": "^6.4.4",
+    "tsc": "^2.0.4"
   }
 }
