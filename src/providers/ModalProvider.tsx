@@ -1,4 +1,4 @@
-import React, { createContext, useRef, useState } from "react";
+import React, { createContext, useState } from "react";
 import useAuth from "../hooks/useAuth";
 
 interface ModalProviderProps {
