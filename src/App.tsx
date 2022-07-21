@@ -1,4 +1,3 @@
-/* eslint-disable */
 import AsideMenu from "./components/AsideMenu";
 import Navbar from "./components/Navbar";
 import OrderItem from "./components/OrderItem";
@@ -20,9 +19,11 @@ function App() {
     validateSession();
   }, [validateSession]);
 
+  /*eslint-disable */
   useEffect(() => {
     vldSession();
   }, []);
+  /*eslint-enable  */
 
   const order = {
     sector: "ALMOXARIFADO",

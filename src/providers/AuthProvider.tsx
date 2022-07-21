@@ -25,8 +25,9 @@ export default function AuthProvider({ children }: AuthProviderProps) {
 
   function login(email: string, password: string) {
     Api.post("login", { email, password })
-      .then(() => {
-        const userDecoded: IUser = JwtDecode(document.cookie);
+      .then(({ data }) => {
+        localStorage.setItem("@SO-System:accessToken", JSON.stringify(data.accessToken));
+        const userDecoded: IUser = JwtDecode(data.accessToken);
         setUser({
           name: userDecoded.name,
           _id: userDecoded._id,
@@ -48,30 +49,39 @@ export default function AuthProvider({ children }: AuthProviderProps) {
   }
 
   function validateSession() {
-    Api.post("validate")
-      .then(() => {
-        const userDecoded: IUser = JwtDecode(document.cookie);
-        setUser({
-          name: userDecoded.name,
-          _id: userDecoded._id,
-          isAdmin: userDecoded.isAdmin,
-          role: user.role,
-        });
-
-        if (!isAuth) {
-          setIsAuth(true);
-        }
+    const token = localStorage.getItem("@SO-System:accessToken") as string;
+    try {
+      Api.post("validate", {
+        accessToken: JSON.parse(token),
       })
-      .catch((err) => {
-        console.log(err);
-        setIsAuth(false);
-        setUser({} as IUser);
-        if (err.response?.data) {
-          Toast.error(JSON.stringify(err.response.data?.err));
-        } else {
-          Toast.error("Connection error.");
-        }
-      });
+        .then(() => {
+          const userDecoded: IUser = JwtDecode(
+            localStorage.getItem("@SO-System:accessToken") || ""
+          );
+          setUser({
+            name: userDecoded.name,
+            _id: userDecoded._id,
+            isAdmin: userDecoded.isAdmin,
+            role: user.role,
+          });
+
+          if (!isAuth) {
+            setIsAuth(true);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          setIsAuth(false);
+          setUser({} as IUser);
+          if (err.response?.data) {
+            Toast.error(JSON.stringify(err.response.data?.err));
+          } else {
+            Toast.error("Connection error.");
+          }
+        });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   function logOut() {
