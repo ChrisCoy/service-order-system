@@ -1,1 +1,1 @@
-web: yarn --cwd ./api start
+web: pm --prefix ./api/ run start
