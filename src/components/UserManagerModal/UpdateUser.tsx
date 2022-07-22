@@ -1,14 +1,20 @@
 import { SyntheticEvent, useEffect, useRef, useState } from "react";
 import { IoArrowBack as BackIcon } from "react-icons/io5";
 import useToast from "../../hooks/useToast";
-import type { IRole } from "../../types/UserTypes";
+import type { IRole, IUserComplete } from "../../types/UserTypes";
 import useAxios from "../../hooks/useAxios";
 
-interface ICreateUserProps {
+interface IUpdateUserProps {
   setCrudState: (option: "CREATE" | "VIEW" | "UPDATE" | "LIST") => void;
+  user: IUserComplete;
 }
 
-export default function CreateUser({ setCrudState }: ICreateUserProps) {
+export default function UpdateUser({ setCrudState, user }: IUpdateUserProps) {
+  const [name, setName] = useState(user.name);
+  const [email, setEmail] = useState(user.email);
+  const [password, setPassword] = useState("");
+  const [repeatPw, setRepeatPw] = useState("");
+
   const [roleList, setRoleList] = useState<IRole[]>([]);
   const { AxiosQuery } = useAxios();
   const formRef = useRef(null);
@@ -57,13 +63,14 @@ export default function CreateUser({ setCrudState }: ICreateUserProps) {
     }
 
     const newUser = {
+      _id: user._id,
       email: (form.querySelector("#eml") as HTMLInputElement).value,
       name: (form.querySelector("#name") as HTMLInputElement).value,
       password: (form.querySelector("#psw") as HTMLInputElement).value,
       role: (form.querySelector("#options") as HTMLSelectElement).value,
     };
 
-    AxiosQuery("/register", newUser).then(({ status }) => {
+    AxiosQuery("/update-user", newUser).then(({ status }) => {
       if (status === 200) {
         Toast.info("Success!");
         setCrudState("LIST");
@@ -78,32 +85,56 @@ export default function CreateUser({ setCrudState }: ICreateUserProps) {
       <button className="back-button" onClick={() => setCrudState("LIST")}>
         <BackIcon size={38} />
       </button>
-      <h2 className="title-create">Criando Usuário</h2>
+      <h2 className="title-create">Atualizando Usuário</h2>
       <form ref={formRef} onSubmit={handleSaveSubmit} className="create-user-container">
         <div className="inputs-container-user">
           <label htmlFor="name">
             Nome
-            <input type="text" id="name" />
+            <input
+              type="text"
+              id="name"
+              value={name}
+              onChange={(e) => {
+                setName(e.target.value);
+              }}
+            />
           </label>
           <label htmlFor="eml">
             Usuário/Email
-            <input type="text" id="eml" />
+            <input
+              type="text"
+              id="eml"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+            />
           </label>
           <label htmlFor="psw">
             Senha
-            <input type="text" id="psw" />
+            <input
+              type="text"
+              id="psw"
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+            />
           </label>
           <label htmlFor="psw">
             Repita a senha
-            <input type="text" id="psw_repeat" />
+            <input
+              type="text"
+              id="psw_repeat"
+              value={repeatPw}
+              onChange={(e) => {
+                setRepeatPw(e.target.value);
+              }}
+            />
           </label>
           <label htmlFor="role">
             Setor
             <select name="options" id="options" defaultValue={0}>
-              <option value={0} disabled>
-                Selecione uma opção.
-              </option>
-
               {roleList.map((role) => {
                 return <option value={role._id}>{role.name}</option>;
               })}

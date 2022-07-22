@@ -37,7 +37,6 @@ export default function AuthProvider({ children }: AuthProviderProps) {
         setIsAuth(true);
       })
       .catch((err) => {
-        console.log(err);
         setIsAuth(false);
         setUser({} as IUser);
         if (err.response?.data) {
@@ -70,7 +69,6 @@ export default function AuthProvider({ children }: AuthProviderProps) {
           }
         })
         .catch((err) => {
-          console.log(err);
           setIsAuth(false);
           setUser({} as IUser);
           if (err.response?.data) {
@@ -80,7 +78,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
           }
         });
     } catch (error) {
-      console.log(error);
+      Toast.error(JSON.stringify(error));
     }
   }
 

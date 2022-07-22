@@ -115,8 +115,10 @@
 .user-item-title {
   display: flex;
   width: 100%;
+  height: 60px;
   justify-content: space-between;
-  padding: 1.2rem 0.4rem;
+  align-items: center;
+  padding: 0 0.4rem;
 
   .item-buttons {
     display: flex;
@@ -127,10 +129,27 @@
     margin-right: 0.4rem;
   }
 
-  .user-name,
-  .user-email {
+  .item-info {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .item-info .user-name {
+    flex: 1;
+  }
+
+  .item-info .user-email {
+    flex: 5;
+  }
+
+  .item-info .user-name,
+  .item-info .user-email {
     display: flex;
     align-items: center;
+    justify-content: center;
   }
 }
 
