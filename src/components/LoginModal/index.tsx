@@ -24,10 +24,10 @@ export default function Login() {
       return;
     }
 
-    if (email.length < 5 || password.length < 5) {
-      Toast.error("Email or Password too Short!");
-      return;
-    }
+    // if (email.length < 5 || password.length < 5) {
+    //   Toast.error("Email or Password too Short!");
+    //   return;
+    // }
 
     login(email, password);
   }

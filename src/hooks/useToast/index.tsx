@@ -4,11 +4,22 @@ import { IoWarningOutline as ErrorIcon } from "react-icons/io5";
 
 import "./style.scss";
 
+const toastContainer = document.createElement("div");
+toastContainer.classList.add("toast-container");
+
+
+//i know it is not something good to do, but it works well and i want to finish this project...
+//so, well, sorry for you that had read this creppy code :D
 function addAndRemoveNode(div: any) {
-  const cont = document.querySelectorAll(".toast").length * 70 + 16;
-  div.style.top = `${cont}px`;
-  document.body.append(div);
+  const contDivToast = document.querySelectorAll(".toast").length;
+  if (contDivToast === 0) {
+    document.body.append(toastContainer);
+  }
+  toastContainer.append(div);
   setTimeout(() => {
+    if (document.querySelectorAll(".toast").length === 0) {
+      toastContainer.remove();
+    }
     div.remove();
   }, 2900);
 }

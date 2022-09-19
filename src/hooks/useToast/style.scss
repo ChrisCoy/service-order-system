@@ -1,7 +1,4 @@
 .toast {
-  position: fixed;
-  top: 16px;
-  right: 1rem;
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -12,6 +9,5 @@
   font-weight: 700;
   border-radius: 3px;
   animation: fade 1s linear 2s 1;
-  z-index: 10;
   color: white;
 }

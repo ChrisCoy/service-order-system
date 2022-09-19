@@ -1,52 +1,59 @@
 import { BsFileEarmarkPerson as PersonIcon } from "react-icons/bs";
 import { FiEdit as EditIcon } from "react-icons/fi";
 import { AiOutlineDelete as DeleteIcon, AiOutlineMail as EmailIcon } from "react-icons/ai";
-import { IoPersonAddOutline as AddUserIcon } from "react-icons/io5";
+// import { IoPersonAddOutline as AddUserIcon } from "react-icons/io5";
+import { MdOutlineDriveFileRenameOutline as NameIcon } from "react-icons/md";
 import { useEffect, useState } from "react";
-import type { IUser, IUserComplete } from "../../types/UserTypes";
+import type { IRole, IUser, IUserComplete } from "../../types/UserTypes";
 import useAxios from "../../hooks/useAxios";
 import useToast from "../../hooks/useToast";
 
-interface IListUsersProps {
-  users: IUserComplete[];
-  setUsers: (value: IUserComplete[]) => void;
+interface IListRoleProps {
+  roles: IRole[];
+  setRoles: (value: IRole[]) => void;
   setCrudState: (option: "CREATE" | "VIEW" | "UPDATE" | "LIST") => void;
-  setSelectedUser: (option: IUserComplete) => void;
+  setSelectedRole: (option: IRole) => void;
 }
 
 export default function ListUsers({
   setCrudState,
-  setSelectedUser,
-  users,
-  setUsers,
-}: IListUsersProps) {
+  setSelectedRole,
+  roles,
+  setRoles,
+}: IListRoleProps) {
   let contZebra = 0;
   const { AxiosQuery } = useAxios();
   const Toast = useToast();
 
+  useEffect(() => {
+    AxiosQuery("/role/list").then(({ data }) => {
+      setRoles(data.roleList);
+    });
+  }, []);
+
   function handleEditButton(_id?: string) {
-    const selectedUser = users.find((user) => user._id === _id) as IUserComplete;
+    const selectedRole = roles.find((role) => role._id === _id) as IRole;
     setCrudState("UPDATE");
-    setSelectedUser(selectedUser);
+    setSelectedRole(selectedRole);
   }
 
   function handleViewButton(_id?: string) {
-    const selectedUser = users.find((user) => user._id === _id) as IUserComplete;
+    const selectedRole = roles.find((role) => role._id === _id) as IRole;
     setCrudState("VIEW");
-    setSelectedUser(selectedUser);
+    setSelectedRole(selectedRole);
   }
 
-  function handleRemoveButton(_id?: string) {
-    AxiosQuery(`user/remove/${_id}`).then(({ status }) => {
-      if (status !== 200) {
-        Toast.error("Error!");
-        return;
-      }
+  async function handleRemoveButton(_id?: string) {
+    const { status } = await AxiosQuery(`role/remove/${_id}`);
 
+    if (status !== 200) {
+      Toast.info("Error!");
+      return;
+    }
+
+    AxiosQuery("/role/list").then(({ data }) => {
+      setRoles(data.roleList);
       Toast.info("Success!");
-      AxiosQuery("/user/list").then(({ data }) => {
-        setUsers(data.userList);
-      });
     });
   }
 
@@ -54,54 +61,46 @@ export default function ListUsers({
     <>
       <div className="userslist-title">
         <button className="create-new-user" onClick={() => setCrudState("CREATE")}>
-          <p>Criar Novo Usuário</p>
+          <p>Criar Novo Setor</p>
           <span>
-            <AddUserIcon />
+            <NameIcon />
           </span>
         </button>
-        <h2>Usuários Registrados</h2>
+        <h2>Setores Registrados</h2>
       </div>
       <div className="user-item-title">
         <div className="user-name">
-          <PersonIcon />
-          <strong>Nome</strong>
-        </div>
-
-        <div className="user-email">
-          <EmailIcon />
-          <strong>Email/usuário</strong>
+          <NameIcon />
+          <strong>Nome do Setor</strong>
         </div>
         <span className="item-buttons">
           <strong>Ações</strong>
         </span>
       </div>
 
-      {users.map((user) => {
+      {roles.map((role) => {
         contZebra++;
         return (
           <div className={`user-item ${contZebra % 2 && "zebra-item"}`} key={contZebra}>
             <div
               className="item-info"
               onClick={() => {
-                handleViewButton(user._id);
+                handleViewButton(role._id);
               }}
             >
               <div className="user-name">
-                <p>{user.name}</p>
-              </div>
-              <div className="user-email">
-                <p>{user.email}</p>
+                <p>{role.name}</p>
               </div>
             </div>
             <span className="item-buttons">
               <EditIcon
                 onClick={() => {
-                  handleEditButton(user._id);
+                  handleEditButton(role._id);
                 }}
               />
               <DeleteIcon
                 onClick={() => {
-                  handleRemoveButton(user._id);
+                  handleRemoveButton(role._id);
                 }}
               />
             </span>

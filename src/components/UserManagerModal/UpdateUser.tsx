@@ -7,9 +7,10 @@ import useAxios from "../../hooks/useAxios";
 interface IUpdateUserProps {
   setCrudState: (option: "CREATE" | "VIEW" | "UPDATE" | "LIST") => void;
   user: IUserComplete;
+  setUsers: (value: IUserComplete[]) => void;
 }
 
-export default function UpdateUser({ setCrudState, user }: IUpdateUserProps) {
+export default function UpdateUser({ setCrudState, user, setUsers }: IUpdateUserProps) {
   const [name, setName] = useState(user.name);
   const [email, setEmail] = useState(user.email);
   const [password, setPassword] = useState("");
@@ -24,7 +25,7 @@ export default function UpdateUser({ setCrudState, user }: IUpdateUserProps) {
     AxiosQuery("role/list").then(({ data }) => {
       setRoleList(data.roleList);
     });
-  }, [AxiosQuery]);
+  }, []);
 
   function handleSaveSubmit(evt: SyntheticEvent) {
     evt.preventDefault();
@@ -70,8 +71,11 @@ export default function UpdateUser({ setCrudState, user }: IUpdateUserProps) {
       role: (form.querySelector("#options") as HTMLSelectElement).value,
     };
 
-    AxiosQuery("/update-user", newUser).then(({ status }) => {
+    AxiosQuery("/user/update", newUser).then(({ status }) => {
       if (status === 200) {
+        AxiosQuery("/user/list").then(({ data }) => {
+          setUsers(data.userList);
+        });
         Toast.info("Success!");
         setCrudState("LIST");
       } else {

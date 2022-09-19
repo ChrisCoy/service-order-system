@@ -1,14 +1,15 @@
 import { SyntheticEvent, useEffect, useRef, useState } from "react";
 import { IoArrowBack as BackIcon } from "react-icons/io5";
 import useToast from "../../hooks/useToast";
-import type { IRole } from "../../types/UserTypes";
+import type { IRole, IUserComplete } from "../../types/UserTypes";
 import useAxios from "../../hooks/useAxios";
 
 interface ICreateUserProps {
   setCrudState: (option: "CREATE" | "VIEW" | "UPDATE" | "LIST") => void;
+  setUsers: (value: IUserComplete[]) => void;
 }
 
-export default function CreateUser({ setCrudState }: ICreateUserProps) {
+export default function CreateUser({ setCrudState, setUsers }: ICreateUserProps) {
   const [roleList, setRoleList] = useState<IRole[]>([]);
   const { AxiosQuery } = useAxios();
   const formRef = useRef(null);
@@ -18,7 +19,7 @@ export default function CreateUser({ setCrudState }: ICreateUserProps) {
     AxiosQuery("role/list").then(({ data }) => {
       setRoleList(data.roleList);
     });
-  }, [AxiosQuery]);
+  }, []);
 
   function handleSaveSubmit(evt: SyntheticEvent) {
     evt.preventDefault();
@@ -63,8 +64,13 @@ export default function CreateUser({ setCrudState }: ICreateUserProps) {
       role: (form.querySelector("#options") as HTMLSelectElement).value,
     };
 
-    AxiosQuery("/register", newUser).then(({ status }) => {
+    console.log(newUser);
+
+    AxiosQuery("/user/register", newUser).then(({ status }) => {
       if (status === 200) {
+        AxiosQuery("/user/list").then(({ data }) => {
+          setUsers(data.userList);
+        });
         Toast.info("Success!");
         setCrudState("LIST");
       } else {

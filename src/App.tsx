@@ -11,9 +11,10 @@ import Footer from "./components/Footer";
 import useModal from "./hooks/useModal";
 import useAuth from "./hooks/useAuth";
 import { useCallback, useEffect } from "react";
+import RoleManagerModal from "./components/RoleManagerModal";
 
-function App() {
-  const { newOrderModal, userManagerModal } = useModal();
+export default function App() {
+  const { newOrderModal, userManagerModal, roleManagerModal } = useModal();
   const { isAuth, validateSession } = useAuth();
   const vldSession = useCallback(() => {
     validateSession();
@@ -39,6 +40,7 @@ function App() {
       {!isAuth && <Login />}
       {userManagerModal && <UserManager />}
       {newOrderModal && <NewOrder />}
+      {roleManagerModal && <RoleManagerModal />}
       <Navbar />
       <main className="main-content">
         <AsideMenu />
@@ -54,5 +56,3 @@ function App() {
     </>
   );
 }
-
-export default App;

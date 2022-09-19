@@ -139,16 +139,12 @@
 
   .item-info .user-name {
     flex: 1;
+    overflow: hidden;
   }
 
   .item-info .user-email {
     flex: 5;
-  }
-
-  .item-info .user-name,
-  .item-info .user-email {
     display: flex;
-    align-items: center;
     justify-content: center;
   }
 }

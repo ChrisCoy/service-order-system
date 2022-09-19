@@ -4,7 +4,7 @@ import "./style.scss";
 
 export default function AsideMenu() {
   const { user } = useAuth();
-  const { setNewOrderModal, setUserManagerModal } = useModal();
+  const { setNewOrderModal, setUserManagerModal, setRoleManagerModal } = useModal();
 
   return (
     <div className="aside-menu">
@@ -30,7 +30,7 @@ export default function AsideMenu() {
           <button className="button" onClick={() => setUserManagerModal(true)}>
             GERENCIAR USUÁRIOS
           </button>
-          <button className="button" onClick={() => {}}>
+          <button className="button" onClick={() => setRoleManagerModal(true)}>
             GERENCIAR SETORES
           </button>
         </>

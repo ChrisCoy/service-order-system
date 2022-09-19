@@ -10,6 +10,8 @@ export interface ModalContextData {
   setNewOrderModal: (option: boolean) => void;
   userManagerModal: boolean;
   setUserManagerModal: (option: boolean) => void;
+  roleManagerModal: boolean;
+  setRoleManagerModal: (option: boolean) => void;
   closeAll: () => void;
 }
 
@@ -18,6 +20,7 @@ export const ModalContext = createContext<ModalContextData>({} as ModalContextDa
 export const ModalProvider = ({ children }: ModalProviderProps) => {
   const [newOrderModal, setNewOrderModal] = useState(false);
   const [userManagerModal, setUserManagerModal] = useState(false);
+  const [roleManagerModal, setRoleManagerModal] = useState(false);
   const { isAuth } = useAuth();
 
   function closeAll() {
@@ -26,6 +29,7 @@ export const ModalProvider = ({ children }: ModalProviderProps) => {
     }
     setNewOrderModal(false);
     setUserManagerModal(false);
+    setRoleManagerModal(false);
     document.body.style.overflowY = "scroll";
   }
 
@@ -36,6 +40,8 @@ export const ModalProvider = ({ children }: ModalProviderProps) => {
         setNewOrderModal,
         userManagerModal,
         setUserManagerModal,
+        roleManagerModal,
+        setRoleManagerModal,
         closeAll,
       }}
     >
