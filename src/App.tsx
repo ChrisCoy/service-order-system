@@ -13,12 +13,18 @@ import useAuth from "./hooks/useAuth";
 import { useCallback, useEffect } from "react";
 import RoleManagerModal from "./components/RoleManagerModal";
 
+import { socketConnection } from "./services/socketio";
+
 export default function App() {
   const { newOrderModal, userManagerModal, roleManagerModal } = useModal();
   const { isAuth, validateSession } = useAuth();
   const vldSession = useCallback(() => {
     validateSession();
   }, [validateSession]);
+
+  const io = socketConnection.instance();
+
+  io();
 
   /*eslint-disable */
   useEffect(() => {
