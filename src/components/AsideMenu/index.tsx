@@ -13,6 +13,7 @@ export default function AsideMenu() {
         <button>Recentes</button>
         <button>Por setor</button>
         <button>Por data</button>
+        <button>Minhas Chamadas</button>
       </aside>
       <button
         id="new-order"

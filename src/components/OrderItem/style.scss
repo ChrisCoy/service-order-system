@@ -23,6 +23,10 @@
   overflow: hidden;
 }
 
+.order-info > span:nth-child(2) {
+  text-align: end;
+}
+
 .order-info span strong {
   color: var(--purple-effect);
 }

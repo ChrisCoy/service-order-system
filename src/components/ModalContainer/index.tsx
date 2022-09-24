@@ -35,7 +35,7 @@ export default function Modal({ children }: ModalProps) {
     return () => {
       document.body.style.overflowY = "scroll";
     };
-  });
+  },[]);
 
   return (
     <>

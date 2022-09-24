@@ -6,11 +6,9 @@ import { ModalProvider } from "./providers/ModalProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(
-  <React.StrictMode>
-    <AuthProvider>
-      <ModalProvider>
-        <App />
-      </ModalProvider>
-    </AuthProvider>
-  </React.StrictMode>
+  <AuthProvider>
+    <ModalProvider>
+      <App />
+    </ModalProvider>
+  </AuthProvider>
 );

@@ -1,16 +1,11 @@
-import io from "socket.io-client";
+import io, { Socket } from "socket.io-client";
 
-//i dont know how to type these params, lol
-interface ISocket {
-  _instance?: any;
-  instance: () => any;
-}
+const token = localStorage.getItem("@SO-System:accessToken") || "";
 
-export const socketConnection: ISocket = {
-  get instance() {
-    if (!this._instance) {
-      this._instance = io("http://192.168.0.11:1337");
-    }
-    return this._instance;
+const socket = io("http://localhost:3002", {
+  extraHeaders: {
+    token: token,
   },
-};
+});
+
+export default socket;

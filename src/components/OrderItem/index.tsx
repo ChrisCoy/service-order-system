@@ -4,7 +4,7 @@ interface OrderItemProps {
   order: {
     sector: string;
     author: string;
-    createdAt: string;
+    date: string;
     resume: string;
   };
 }
@@ -60,7 +60,7 @@ export default function OrderItem({ order }: OrderItemProps) {
           </svg>
           Data:
         </strong>
-        {order.createdAt}
+        {order.date}
       </time>
     </div>
   );
