@@ -3,6 +3,7 @@ import useToast from "../hooks/useToast";
 import Api from "../services/api";
 import { IUser } from "../types/UserTypes";
 import JwtDecode from "jwt-decode";
+import io from "../services/socketio";
 
 interface AuthProviderProps {
   children: React.ReactNode;
@@ -35,6 +36,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
           role: user.role,
         });
         setIsAuth(true);
+        io.connect();
       })
       .catch((err) => {
         setIsAuth(false);
@@ -44,6 +46,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
         } else {
           Toast.error("Connection error.");
         }
+        io.disconnect();
       });
   }
 
@@ -67,6 +70,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
           if (!isAuth) {
             setIsAuth(true);
           }
+          io.connect();
         })
         .catch((err) => {
           setIsAuth(false);
@@ -76,6 +80,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
           } else {
             Toast.error("Connection error.");
           }
+          io.disconnect();
         });
     } catch (error) {
       Toast.error(JSON.stringify(error));
@@ -83,7 +88,9 @@ export default function AuthProvider({ children }: AuthProviderProps) {
   }
 
   function logOut() {
-    document.cookie = "access-token=";
+    // document.cookie = "access-token=";
+    localStorage.removeItem("@SO-System:accessToken");
+    io.disconnect();
     setIsAuth(false);
     setUser({} as IUser);
     Toast.info("Success When Leaving");

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import useAuth from "../../hooks/useAuth";
 import io from "../../services/socketio";
 import OrderItem from "../OrderItem";
 
@@ -12,25 +13,32 @@ interface ICall {
 
 export default function CallContainer() {
   const [calls, setCalls] = useState<ICall[]>([]);
+  const { isAuth } = useAuth();
 
   useEffect(() => {
-    io.on("get-all-calls", (data) => {
+    io.on("connect", () => {
+      io.on("get-all-calls", (data) => {
+        try {
+          setCalls(data);
+        } catch (error) {
+          console.error(error);
+        } //todo error message
+      });
+
       try {
-        setCalls(data);
+        io.on("update-orders", (data) => {
+          console.log(data);
+
+          setCalls((oldState) => [data, ...oldState]);
+        });
       } catch (error) {
         console.error(error);
-      } //todo error message
+      }
     });
 
-    try {
-      io.on("update-orders", (order) => {
-        console.log({ order });
-
-        setCalls((oldState) => [order, ...oldState]);
-      });
-    } catch (error) {
-      console.error(error);
-    }
+    io.on("disconnect", () => {
+      setCalls([]);
+    });
   }, []);
 
   return (
