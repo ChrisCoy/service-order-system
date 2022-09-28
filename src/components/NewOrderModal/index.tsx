@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Modal from "../ModalContainer";
 import useModal from "../../hooks/useModal";
 import "./style.scss";
-import io from "../../services/socketio";
+import Socket from "../../services/socketio";
 import { IRole } from "../../types/UserTypes";
 import useAxios from "../../hooks/useAxios";
 import useAuth from "../../hooks/useAuth";
@@ -39,7 +39,7 @@ export default function NewOrder() {
       return;
     }
 
-    io.emit("send-new-order", order);
+    Socket.io.emit("send-new-order", order);
     closeAll();
   }
 

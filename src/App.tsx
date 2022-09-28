@@ -14,15 +14,12 @@ import { useCallback, useEffect } from "react";
 import useModal from "./hooks/useModal";
 import useAuth from "./hooks/useAuth";
 
-import io from "./services/socketio";
-
 export default function App() {
   const { newOrderModal, userManagerModal, roleManagerModal } = useModal();
   const { isAuth, validateSession } = useAuth();
   const vldSession = useCallback(() => {
     validateSession();
   }, [validateSession]);
-
 
   /*eslint-disable */
   useEffect(() => {

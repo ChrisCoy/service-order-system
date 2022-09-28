@@ -3,7 +3,7 @@ import useToast from "../hooks/useToast";
 import Api from "../services/api";
 import { IUser } from "../types/UserTypes";
 import JwtDecode from "jwt-decode";
-import io from "../services/socketio";
+import Socket from "../services/socketio";
 
 interface AuthProviderProps {
   children: React.ReactNode;
@@ -36,7 +36,10 @@ export default function AuthProvider({ children }: AuthProviderProps) {
           role: user.role,
         });
         setIsAuth(true);
-        io.connect();
+
+        Socket.reAuth();
+        Socket.io.connect();
+        console.info("socket connected!");
       })
       .catch((err) => {
         setIsAuth(false);
@@ -46,7 +49,9 @@ export default function AuthProvider({ children }: AuthProviderProps) {
         } else {
           Toast.error("Connection error.");
         }
-        io.disconnect();
+        Socket.io.disconnect();
+        // io.auth
+        console.info("socket disconnected!");
       });
   }
 
@@ -70,7 +75,8 @@ export default function AuthProvider({ children }: AuthProviderProps) {
           if (!isAuth) {
             setIsAuth(true);
           }
-          io.connect();
+          Socket.io.connect();
+          console.info("socket connected!");
         })
         .catch((err) => {
           setIsAuth(false);
@@ -80,7 +86,8 @@ export default function AuthProvider({ children }: AuthProviderProps) {
           } else {
             Toast.error("Connection error.");
           }
-          io.disconnect();
+          Socket.io.disconnect();
+          console.info("socket disconnected!");
         });
     } catch (error) {
       Toast.error(JSON.stringify(error));
@@ -90,7 +97,9 @@ export default function AuthProvider({ children }: AuthProviderProps) {
   function logOut() {
     // document.cookie = "access-token=";
     localStorage.removeItem("@SO-System:accessToken");
-    io.disconnect();
+    Socket.io.disconnect();
+    Socket.io.removeAllListeners();
+    console.info("socket disconnected!");
     setIsAuth(false);
     setUser({} as IUser);
     Toast.info("Success When Leaving");
