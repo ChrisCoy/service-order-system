@@ -23,7 +23,6 @@ export default function useAxios() {
     try {
       const { data, status } = await Axios.post(query, { accessToken: jwt, data: params });
       await removeLoadIcon();
-      console.log(data);
       return { data, status };
     } catch (err) {
       await removeLoadIcon();

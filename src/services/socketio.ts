@@ -1,5 +1,4 @@
-import { useState } from "react";
-import io, { Socket } from "socket.io-client";
+import io from "socket.io-client";
 
 const socket = {
   io: io("http://localhost:3002", {

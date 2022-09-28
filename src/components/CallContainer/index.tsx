@@ -13,9 +13,10 @@ interface ICall {
 
 export default function CallContainer() {
   const [calls, setCalls] = useState<ICall[]>([]);
+  const { isAuth } = useAuth();
 
   useEffect(() => {
-    Socket.io.on("connect", () => {
+    if (isAuth) {
       Socket.io.on("get-all-calls", (data) => {
         try {
           setCalls(data);
@@ -31,16 +32,16 @@ export default function CallContainer() {
       } catch (error) {
         console.error(error);
       }
-    });
 
-    Socket.io.on("disconnect", () => {
-      setCalls([]);
-    });
+      Socket.io.on("disconnect", () => {
+        setCalls([]);
+      });
 
-    return () => {
-      Socket.io.disconnect();
-    };
-  }, []);
+      return () => {
+        Socket.io.disconnect();
+      };
+    }
+  }, [isAuth]);
 
   return (
     <section className="order" id="orders">

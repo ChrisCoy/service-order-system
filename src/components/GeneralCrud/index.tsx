@@ -12,14 +12,6 @@ export default function GeneralCrud() {
   const [selectedItem, setSelectedItem] = useState({} as any);
   const [screenState, setScreenState] = useState<"FORM" | "LIST">("LIST");
 
-  useEffect(() => {
-    console.log(selectedItem);
-  }, [selectedItem]);
-
-  function test(id: any) {
-    console.log(id);
-  }
-
   return (
     <>
       {screenState === "LIST" && (

@@ -33,13 +33,15 @@ export default function AuthProvider({ children }: AuthProviderProps) {
           name: userDecoded.name,
           _id: userDecoded._id,
           isAdmin: userDecoded.isAdmin,
-          role: user.role,
+          role: userDecoded.role,
         });
+
         setIsAuth(true);
+
+        console.log(userDecoded);
 
         Socket.reAuth();
         Socket.io.connect();
-        console.info("socket connected!");
       })
       .catch((err) => {
         setIsAuth(false);
@@ -50,8 +52,6 @@ export default function AuthProvider({ children }: AuthProviderProps) {
           Toast.error("Connection error.");
         }
         Socket.io.disconnect();
-        // io.auth
-        console.info("socket disconnected!");
       });
   }
 
@@ -69,14 +69,13 @@ export default function AuthProvider({ children }: AuthProviderProps) {
             name: userDecoded.name,
             _id: userDecoded._id,
             isAdmin: userDecoded.isAdmin,
-            role: user.role,
+            role: userDecoded.role,
           });
 
           if (!isAuth) {
             setIsAuth(true);
           }
           Socket.io.connect();
-          console.info("socket connected!");
         })
         .catch((err) => {
           setIsAuth(false);
@@ -87,7 +86,6 @@ export default function AuthProvider({ children }: AuthProviderProps) {
             Toast.error("Connection error.");
           }
           Socket.io.disconnect();
-          console.info("socket disconnected!");
         });
     } catch (error) {
       Toast.error(JSON.stringify(error));
@@ -99,7 +97,6 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     localStorage.removeItem("@SO-System:accessToken");
     Socket.io.disconnect();
     Socket.io.removeAllListeners();
-    console.info("socket disconnected!");
     setIsAuth(false);
     setUser({} as IUser);
     Toast.info("Success When Leaving");

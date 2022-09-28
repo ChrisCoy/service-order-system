@@ -64,7 +64,6 @@ export default function CreateUser({ setCrudState, setUsers }: ICreateUserProps)
       role: (form.querySelector("#options") as HTMLSelectElement).value,
     };
 
-    console.log(newUser);
 
     AxiosQuery("/user/register", newUser).then(({ status }) => {
       if (status === 200) {

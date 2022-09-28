@@ -1,5 +1,5 @@
 import { IoArrowBack as BackIcon } from "react-icons/io5";
-import type {  IUserComplete } from "../../types/UserTypes";
+import type { IUserComplete } from "../../types/UserTypes";
 
 interface IViewUserProps {
   setCrudState: (option: "CREATE" | "VIEW" | "UPDATE" | "LIST") => void;
@@ -7,7 +7,6 @@ interface IViewUserProps {
 }
 
 export default function ViewUser({ setCrudState, user }: IViewUserProps) {
-  console.log(user);
   return (
     <>
       <button className="back-button" onClick={() => setCrudState("LIST")}>
