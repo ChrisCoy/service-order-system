@@ -1,7 +1,7 @@
 import io from "socket.io-client";
 
 const socket = {
-  io: io("http://so-system.herokuapp.com/", {
+  io: io(process.env.REACT_APP_API_LINK as string, {
     extraHeaders: {
       token: localStorage.getItem("@SO-System:accessToken") || "",
     },
