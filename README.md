@@ -1,46 +1,23 @@
-# Getting Started with Create React App
+<h2>An app for manage tasks in a company, for example: you need a new keyboard, just create a order to the I.T. sector, and the sector will receive the task.</h2>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h4>Before run the app, fill the .env with the correct ambient variables and execute <code>npm install</code> and then  <code>npm run dev</code>, you can also use yarn instead of npm.</br>
+The back-end will create an admin account automatically, the default user and password is <code>admin</code>.
+</h4>
 
-## Available Scripts
+<h5>You can have a preview of the app at <a href="https://so-system.netlify.app/">https://so-system.netlify.app/</a>, please don't change admin account data.</h5>
 
-In the project directory, you can run:
+<h5>Check the back-end at <a href="https://github.com/ChrisCoy/service-order-system-backend">here.</a></h5>
+</br>
 
-### `yarn start`
+<h1>TODO🐍</h1>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+<ul>
+  <li>Implement vote on task</li>
+  <li>Implement delete task feature</li>
+  <li>Implement task pagination</li>
+  <li>Implement task filters</li>
+  <li>Fix names of variables and interface</li>
+  <li>Refactor the code</li>
+  <li>Create a form to guests to create an account</li>
+  <li>Implement email notifications feature</li>
+</ul>
