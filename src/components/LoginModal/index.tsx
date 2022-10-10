@@ -32,10 +32,6 @@ export default function Login() {
     login(email, password);
   }
 
-  if (!loginDelay) {
-    return null;
-  }
-
   return (
     <Modal>
       <form className="username-content" onSubmit={handleLogin}>

@@ -12,13 +12,19 @@ The back-end will create an admin account automatically, the default user and pa
 
 <h1>TODO🐍</h1>
 
+<p>💪: Working on; <br>
+✔️: Done;</p>
 <ul>
+  <li>Invert taks list sort</li>
+  <li>💪Add order by button</li>
+  <li>Do not send events to the client that had sent.</li>
   <li>Implement vote on task</li>
   <li>Implement delete task feature</li>
   <li>Implement task pagination</li>
-  <li>Implement task filters</li>
+  <li>💪Implement task filters</li>
   <li>Fix names of variables and interface</li>
   <li>Refactor the code</li>
   <li>Create a form to guests to create an account</li>
   <li>Implement email notifications feature</li>
+  <li>When the task is done, it must be archived, and not appear in home anymore</li>
 </ul>
